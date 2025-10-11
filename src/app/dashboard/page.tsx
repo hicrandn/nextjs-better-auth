@@ -1,5 +1,10 @@
+import Logout from "@/components/logout";
 import React from "react";
 
 export default function Dashboard() {
-  return <div>giriş yapıldı dashboarda yönlendirildiniz</div>;
+  return (
+    <div className="flex flex-col justify-center items-center p-10">
+      <Logout />
+    </div>
+  );
 }

@@ -24,9 +24,9 @@ export const signUp = async (email: string, password: string, name: string) => {
   try {
     await auth.api.signUpEmail({
       body: {
-        email: "test@test.com",
-        password: "password1",
-        name: "test",
+        email,
+        password,
+        name,
       },
     });
     return { success: true, message: "Signed up successfully" };

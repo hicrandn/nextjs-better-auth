@@ -80,7 +80,6 @@ export function LoginForm({
           <CardDescription>Login with your Google account</CardDescription>
         </CardHeader>
         <CardContent>
-          ,
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <FieldGroup>
@@ -131,7 +130,10 @@ export function LoginForm({
                       />
                     </FormControl>
                     <FormMessage />
-                    <Link href="#" className="text-sm text-gray-500 text-right">
+                    <Link
+                      href="/forgot-password"
+                      className="text-sm text-gray-500 text-right"
+                    >
                       Forgot password?
                     </Link>
                   </FormItem>
@@ -145,7 +147,10 @@ export function LoginForm({
                   "Login"
                 )}
               </Button>
-              <Link href="#" className="text-sm text-gray-500 text-center">
+              <Link
+                href="/signup"
+                className="text-sm text-gray-500 text-center"
+              >
                 Don't have an account?{" "}
                 <Link href="/signup" className="text-primary underline">
                   Sign up
