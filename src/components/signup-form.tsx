@@ -1,5 +1,5 @@
 "use client";
-import { signIn } from "@/server/users";
+import { signUp } from "@/server/users";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -35,11 +35,12 @@ import { Loader2 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 
 const formSchema = z.object({
+  username: z.string().min(1),
   email: z.string().email(),
   password: z.string().min(8),
 });
 
-export function LoginForm({
+export function SignupForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -48,6 +49,7 @@ export function LoginForm({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      username: "",
       email: "",
       password: "",
     },
@@ -62,7 +64,11 @@ export function LoginForm({
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true);
-    const { success, message } = await signIn(values.email, values.password);
+    const { success, message } = await signUp(
+      values.email,
+      values.password,
+      values.username
+    );
 
     if (success) {
       toast.success(message as string);
@@ -105,6 +111,20 @@ export function LoginForm({
               </FieldGroup>
               <FormField
                 control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="dareyn" {...field} />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
                 name="email"
                 render={({ field }) => (
                   <FormItem>
@@ -142,13 +162,13 @@ export function LoginForm({
                 {isLoading ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
                 ) : (
-                  "Login"
+                  "Sign up"
                 )}
               </Button>
               <Link href="#" className="text-sm text-gray-500 text-center">
-                Don't have an account?{" "}
-                <Link href="/signup" className="text-primary underline">
-                  Sign up
+                Already have an account?{" "}
+                <Link href="/login" className="text-primary underline">
+                  Login
                 </Link>
               </Link>
             </form>

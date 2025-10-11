@@ -15,17 +15,26 @@ export const signIn = async (email: string, password: string) => {
     const e = error as Error;
     return {
       success: false,
-      message: { error: e.message || "Invalid email or password" },
+      message: e.message || "Invalid email or password",
     };
   }
 };
 
-export const signUp = async () => {
-  await auth.api.signUpEmail({
-    body: {
-      email: "test@test.com",
-      password: "password1",
-      name: "test",
-    },
-  });
+export const signUp = async (email: string, password: string, name: string) => {
+  try {
+    await auth.api.signUpEmail({
+      body: {
+        email: "test@test.com",
+        password: "password1",
+        name: "test",
+      },
+    });
+    return { success: true, message: "Signed up successfully" };
+  } catch (error) {
+    const e = error as Error;
+    return {
+      success: false,
+      message: e.message || "Invalid email or password",
+    };
+  }
 };
