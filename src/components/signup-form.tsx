@@ -83,7 +83,7 @@ export function SignupForm({
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Welcome back</CardTitle>
-          <CardDescription>Login with your Google account</CardDescription>
+          <CardDescription>Sign up with your Google account</CardDescription>
         </CardHeader>
         <CardContent>
           ,
@@ -102,7 +102,7 @@ export function SignupForm({
                         fill="currentColor"
                       />
                     </svg>
-                    Login with Google
+                    Sign up with Google
                   </Button>
                 </Field>
                 <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
